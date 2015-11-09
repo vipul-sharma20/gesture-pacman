@@ -15,6 +15,8 @@ while(cap.isOpened()):
     ret, img = cap.read()
     img = cv2.flip(img, 1)
 
+    #thresh = cv2.namedWindow('Threshold', cv2.WINDOW_NORMAL)
+    orig = cv2.namedWindow('Original', cv2.WINDOW_NORMAL)
     #img = cv2.GaussianBlur(img, (15, 15), 0)
     hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 
@@ -31,6 +33,7 @@ while(cap.isOpened()):
     max_area = 0
     last_x = centroid_x
     last_y = centroid_y
+
     if contours:
         for i in contours:
             area = cv2.contourArea(i)
@@ -48,8 +51,8 @@ while(cap.isOpened()):
         cv2.line(img,(900,0),(900,700),(255,0,0),5)
         cv2.line(img,(400,350),(900, 350),(255,0,0),5)
 
-        cv2.imshow('Threshold', frame_threshed)
-        cv2.imshow('blurred', img)
+        #cv2.imshow('Threshold', frame_threshed)
+        cv2.imshow('Original', img)
 
 
         """
